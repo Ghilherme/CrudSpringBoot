@@ -1,4 +1,4 @@
-package com.example.contentApp.adapters;
+package com.example.contentApp.adapters.rest;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
