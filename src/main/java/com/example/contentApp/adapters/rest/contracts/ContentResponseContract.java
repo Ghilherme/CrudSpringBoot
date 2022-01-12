@@ -20,7 +20,7 @@ public class ContentResponseContract {
     private String contentDescription;
 
     @JsonProperty("tipo_conteudo")
-    private int contentType;
+    private Integer contentType;
 
     @JsonProperty("date_time")
     private LocalDateTime dateTime;

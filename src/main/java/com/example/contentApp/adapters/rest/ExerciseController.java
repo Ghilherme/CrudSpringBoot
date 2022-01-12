@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,11 +15,6 @@ import java.util.Map;
 @RequestMapping("/exercises")
 public class ExerciseController {
 
-    @Autowired
-    CreateContentUseCase createContentUseCase;
-
-    @Autowired
-    FindContentUseCase findContentUseCase;
 
     @GetMapping(path = "two_sum")
     public ResponseEntity<Object> getTwoSum(@RequestParam(value = "array") int[] array, @RequestParam(value = "desiredsum") Integer desiredSum){
@@ -27,7 +23,7 @@ public class ExerciseController {
         for (int x =0; x < arr.length; x++){
             for (int j =x +1; j < arr.length; j++){
                 if(arr[x] + arr[j] == desiredSum)
-                    return ResponseEntity.ok(new int[] {arr[x],arr[j]});
+                    return ResponseEntity.ok(new int[] {x,j});
             }
         }
 
@@ -76,5 +72,47 @@ public class ExerciseController {
         System.out.println("balance:" + totalValue);
 
         return ResponseEntity.ok(totalValue);
+    }
+
+    /*
+        Write a Java program to divide a string in n equal parts.
+        The given string is: abcdefghijklmnopqrstuvwxy
+        The string divided into 5 parts and they are:
+
+        abcde
+        fghij
+        klmno
+        pqrst
+        uvwxy
+
+        String str = "abcdefghijklmnopqrstuvwxy"; //length 25
+        int split_number = 5;
+        splitString(str, split_number);
+
+        str = "abcfdefghijkl"; //length 13
+        split_number = 3;
+        splitString(str, split_number);
+
+        str = "abcfdefghi"; //length 10
+        split_number = 2;
+        splitString(str, split_number);
+     */
+    @GetMapping(path = "split_string")
+    public ResponseEntity<Object> splitString(@RequestParam(value = "str") String str, @RequestParam(value = "split_number") Integer splitNumber){
+        if(str.length() % splitNumber != 0){
+            return ResponseEntity.badRequest().body("It can`t be divided into equal parts.");
+        }
+
+        int begin = 0;
+        int end = str.length() / splitNumber;
+        ArrayList<String> results = new ArrayList<>();
+
+        for (int i = 0; i < splitNumber; i++) {
+            results.add(str.substring(begin, end ));
+            begin = begin + splitNumber;
+            end = end + splitNumber;
+        }
+
+        return ResponseEntity.ok(results);
     }
 }

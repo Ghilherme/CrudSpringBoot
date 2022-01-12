@@ -13,4 +13,6 @@ public interface ContentPersistencePort {
 
     Iterable<ContentModel> findAll();
 
+    void deleteById(UUID id);
+
 }

@@ -11,11 +11,4 @@ import java.util.UUID;
 @Repository
 public interface ContentRepository extends CrudRepository<ContentModel, UUID>, ContentPersistencePort {
 
-    ContentModel save(ContentModel content);
-
-
-    @Override
-    default Optional<ContentModel> findById(UUID uuid) {
-        return Optional.empty();
-    }
 }
