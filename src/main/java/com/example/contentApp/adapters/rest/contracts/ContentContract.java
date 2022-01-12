@@ -1,4 +1,4 @@
-package com.example.contentApp.adapters.rest;
+package com.example.contentApp.adapters.rest.contracts;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -7,13 +7,13 @@ import java.io.Serializable;
 public class ContentContract implements Serializable {
 
     @JsonProperty("nome_conteudo")
-    public String contentName;
+    private String contentName;
 
     @JsonProperty("descricao_conteudo")
-    public String contentDescription;
+    private String contentDescription;
 
     @JsonProperty("tipo_conteudo")
-    public int contentType;
+    private int contentType;
 
     public String getContentName() {
         return contentName;

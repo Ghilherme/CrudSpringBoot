@@ -1,20 +1,21 @@
 package com.example.contentApp.adapters.persistence;
 
-import com.example.contentApp.domain.Content;
-import com.example.contentApp.model.ContentRecord;
-import com.example.contentApp.ports.outgoing.ContentPersistence;
-import org.hibernate.id.GUIDGenerator;
+import com.example.contentApp.model.ContentModel;
+import com.example.contentApp.ports.outgoing.ContentPersistencePort;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface ContentRepository extends CrudRepository<ContentRecord, UUID>, ContentPersistence {
+public interface ContentRepository extends CrudRepository<ContentModel, UUID>, ContentPersistencePort {
 
-    Content findByContentId(UUID Id);
-
-    ContentRecord save(ContentRecord content);
+    ContentModel save(ContentModel content);
 
 
+    @Override
+    default Optional<ContentModel> findById(UUID uuid) {
+        return Optional.empty();
+    }
 }

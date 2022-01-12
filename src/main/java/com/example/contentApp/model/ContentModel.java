@@ -5,10 +5,11 @@ import org.hibernate.id.GUIDGenerator;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity(name = "Content")
-public class ContentRecord {
+public class ContentModel {
 
     @Id
     @GeneratedValue(generator = "uuid2")
@@ -27,6 +28,26 @@ public class ContentRecord {
     @NonNull
     @Column(name="CONTENT_TYPE")
     private int contentType;
+
+    @Column(name="DATE_TIME")
+    private LocalDateTime dateTime;
+
+    public UUID getContentId() {
+        return contentId;
+    }
+
+    public void setContentId(UUID contentId) {
+        this.contentId = contentId;
+    }
+
+    @NonNull
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(@NonNull LocalDateTime dateTime) {
+        this.dateTime = dateTime;
+    }
 
     public UUID getId() {
         return contentId;

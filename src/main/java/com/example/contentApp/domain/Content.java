@@ -1,12 +1,30 @@
 package com.example.contentApp.domain;
 
+import com.sun.istack.NotNull;
+
+import java.time.LocalDateTime;
+import java.util.UUID;
+
 public class Content {
 
-    public String contentName;
+    @NotNull
+    private UUID id;
 
-    public String contentDescription;
+    private String contentName;
 
-    public int contentType;
+    private String contentDescription;
+
+    private int contentType;
+
+    private LocalDateTime dateTime;
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
     public String getContentName() {
         return contentName;
@@ -30,5 +48,13 @@ public class Content {
 
     public void setContentType(int contentType) {
         this.contentType = contentType;
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
     }
 }
